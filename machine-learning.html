@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/gh/mathjax/MathJax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="Stylesheet" type="text/css" href="style.css">
+<title>machine-learning</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<div id="Machine Learning"><h1 id="Machine Learning">Machine Learning</h1></div>
+
+<p>
+design of a learning element is affected by:
+</p>
+<ul>
+<li>
+which components of performance element are to be learned
+
+<li>
+what feedback is available to learn these components
+
+<li>
+what representation is used for the components
+
+</ul>
+
+<p>
+offline learning: learn based on some data, then apply results to situation
+</p>
+
+<p>
+feedback types (get input, make decision, learn based on feedback):
+</p>
+<ul>
+<li>
+supervised learning: correct answers for each example.
+
+<ul>
+<li>
+only positive examples
+
+<li>
+positive and negative examples
+
+</ul>
+<li>
+unsupervised learning: no correct answers given
+
+<li>
+semi-supervised learning: learn which questions to ask (active learning)
+
+<li>
+reinforcement learning: occasional rewards
+
+</ul>
+
+<p>
+<img src="img/neurons-vs-nn.png" />
+</p>
+
+<div id="Machine Learning-Learning problems"><h2 id="Learning problems">Learning problems</h2></div>
+
+<p>
+Classification
+</p>
+<ul>
+<li>
+use: from data to discrete classes.
+
+<li>
+examples: handwriting recognition, spam filtering, facial recognition.
+
+</ul>
+
+<p>
+Regression
+</p>
+<ul>
+<li>
+use: predicting a numeric value
+
+<li>
+examples: stock market, weather predictions
+
+</ul>
+
+<p>
+Ranking
+</p>
+<ul>
+<li>
+use: comparing items
+
+<li>
+examples: web search
+
+</ul>
+
+<p>
+Collaborative filtering
+</p>
+<ul>
+<li>
+use: take some else's information, based on that, give prediction
+
+<li>
+examples: recommendation systems (books, movies/shows)
+
+</ul>
+
+<p>
+Clustering
+</p>
+<ul>
+<li>
+use: discovering structure/patterns in data
+
+<li>
+examples: clustering images
+
+</ul>
+
+<div id="Machine Learning-Methodology"><h2 id="Methodology">Methodology</h2></div>
+<div id="Machine Learning-Methodology-Data"><h3 id="Data">Data</h3></div>
+<p>
+labeled instances (like spam, not spam)
+</p>
+<ul>
+<li>
+training set
+
+<li>
+held out set (e.g. for validation)
+
+<li>
+test set (don't even look at this until you want to test your model)
+
+</ul>
+
+<p>
+randomly allocate to data sets.
+</p>
+
+<p>
+features: attribute-value pairs characterizing each x
+</p>
+
+<div id="Machine Learning-Methodology-Experimentation"><h3 id="Experimentation">Experimentation</h3></div>
+<p>
+experimentation cycle:
+</p>
+<ol>
+<li>
+select hypothesis, tune hyperparameters on held-out/validation set
+
+<li>
+compute accuracy of test set (never "peek" at test set itself)
+
+</ol>
+
+<div id="Machine Learning-Methodology-Evaluation"><h3 id="Evaluation">Evaluation</h3></div>
+<p>
+accuracy -- fraction of instances predicted correctly
+</p>
+
+<p>
+Cross validation:
+</p>
+
+<p>
+<img src="img/cross-validation.png" alt="Cross validation diagram" />
+</p>
+
+<p>
+create a confusion matrix (<span class="todo">TODO</span>: there's a diagram for this but not in the old slides)
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:"><h2 id="Machine Learning Steps:">Machine Learning Steps:</h2></div>
+<ol>
+<li>
+choose the features
+
+<li>
+choose the model class
+
+<li>
+choose a search method
+
+</ol>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features"><h3 id="Choose the features">Choose the features</h3></div>
+<p>
+create a feature space: features on x-y axes, points are individual data, classification would be a color scheme.
+</p>
+
+<p>
+<img src="img/feature-space.png" alt="Feature space graph" />
+</p>
+
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Inductive learning method"><h4 id="Inductive learning method">Inductive learning method</h4></div>
+<ul>
+<li>
+construct/adjust h to agree with f (function predicting value) on training set
+
+<li>
+h is consistent if it agrees with f on all examples
+
+<li>
+for example, curve fitting:
+    <img src="img/curve-fitting.png" alt="Curve fitting graph" />
+
+</ul>
+
+<p>
+Occam's razor: "one should not increase, beyond what is necessary, the number of entities required to explain anything"
+basically, choose the simplest option.
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Linear classifier"><h4 id="Linear classifier">Linear classifier</h4></div>
+<p>
+linear classifier: come up with a line that divides feature space, use that for prediction.
+</p>
+
+<p>
+works for stuff like \(x \lor y\), but not if we want \(x \oplus y\) or other things that are not linearly separable.
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Classifying with naive Bayes"><h4 id="Classifying with naive Bayes">Classifying with naive Bayes</h4></div>
+
+<p>
+Binary classification
+</p>
+<ul>
+<li>
+input: email
+
+<li>
+output: spam, not spam
+
+<li>
+setup:
+
+<ul>
+<li>
+get large collection of example emails, labeled "spam/not spam"
+
+<li>
+someone has to hand-label that
+
+<li>
+want to learn to predict label for new emails in future
+
+</ul>
+<li>
+features: attributes used to make label decision
+
+<ul>
+<li>
+words, text patterns (e.g. caps), non-text
+
+</ul>
+</ul>
+
+<p>
+calculation for Bayesian classifier: \(P(C|F_1,...,F_n)\)
+</p>
+
+<p>
+using Bayes' theorem:
+</p>
+
+<p>
+\(P(C|F_1,...F_n)=\frac{P(C)P(F_1,...,F_n|C)}{P(F_1,...,F_n)}\)
+</p>
+
+<p>
+rewrite the numerator of the equation:
+</p>
+
+\begin{align}
+P(C)P(F_1,...,F_n |C)\\
+= P(C)P(F_1 | C)P(F_2 | C, F_1)P(F_3|C, F_1, F_2)P(F_4,...,F_n | C, F_1, F_2, F_3)
+\end{align}
+
+<p>
+that uses the chaining rule. but it's too computationally expensive.
+so naively assume conditional independence:
+</p>
+
+\[
+P(F_i | C, F_j) = P(F_i | C)
+\]
+
+<p>
+This simplifies the formula to:
+</p>
+
+\[
+P(C)P(F_1,...,F_n | C) = P(C) PI(0 to n) P(F_i | C)
+\]
+
+<p>
+<img src="img/bayes-calculation.png" />
+</p>
+
+<p>
+Laplace smoothing helps with really small probabilities.
+Naive Bayes often works. sometimes performs well even if the assumptions are badly violated.
+classification is about predicting correct class label, <em>not</em> about accurately estimating probabilities
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Clustering with K-nearest neighbor"><h4 id="Clustering with K-nearest neighbor">Clustering with K-nearest neighbor</h4></div>
+<p>
+k nearest neighbor classification: find k most similar case, copy majority label
+</p>
+
+<p>
+e.g. to classify unlabeled document, find most similar document and copy label:
+</p>
+
+<p>
+<img src="img/knn.png" alt="K-nearest neighbor example" />
+</p>
+
+<p>
+the <em>k</em> helps get rid of noise which would lead to misclassification  
+</p>
+
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Support vector machine"><h4 id="Support vector machine">Support vector machine</h4></div>
+
+<p>
+k(x,y): "distance" function between instances x and y
+</p>
+
+<p>
+SVMs create a linear separating hyperplane, can embed that into a higher dimensional domain using the kernel trick -- so long as <em>k</em> is a kernel, you don't have to explicitly compute the design matrix
+</p>
+
+<p>
+try to achieve a good margin -- a large separation from the line for both classes.
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the model - model search"><h3 id="Choose the model - model search">Choose the model - model search</h3></div>
+<p>
+evaluating regression:
+</p>
+
+\[
+error(p) = \sum_i (f_p (x_i) - y_i)^2
+\]
+
+<p>
+<img src="img/error-graph.png" alt="Error graph" />
+</p>
+
+<p>
+searching for best model:
+</p>
+
+<p>
+<img src="img/feature-model-space" alt="Feature and model space" />
+</p>
+
+<div id="Machine Learning-Neural Networks"><h2 id="Neural Networks">Neural Networks</h2></div>
+<div id="Machine Learning-Neural Networks-Overview"><h3 id="Overview">Overview</h3></div>
+<p>
+the difference between original machine learning and deep learning:
+</p>
+
+<p>
+<img src="img/ml-vs-dl.png" />
+</p>
+
+<p>
+the original perceptron:
+</p>
+<ul>
+<li>
+binary classifier
+
+<li>
+b(ias??) node, always set to 1
+
+<li>
+n inputs for each feature, with weights
+
+<li>
+\(y=w_1 x_1 _ w_2 x_2 + b\)
+
+</ul>
+
+<p>
+but chaining doesn't make it more interesting, the function collapses to a linear one
+</p>
+  
+<p>
+<img src="img/perceptron.png" />
+</p>
+
+<p>
+So introduce an activation function instead of using a standard linear calculation. This puts the values in a certain range, and now the diagram looks like this:
+</p>
+
+<p>
+<img src="img/activation-functions.png" />
+</p>
+
+<p>
+Then you can build a feed-forward network with hidden layers between input and output:
+</p>
+
+<p>
+<img src="img/feedforward.png" />
+</p>
+
+  
+<div id="Machine Learning-Neural Networks-Training neural networks"><h3 id="Training neural networks">Training neural networks</h3></div>
+<p>
+Loss function determines how close a given network is to being correct for an input.
+If you plot neural networks on x-y, and the amount of loss on z axis, you end up with a loss surface. Then you want to find a point in that surface where the loss is the lowest. 
+</p>
+
+<p>
+<img src="img/loss-plot.png" />
+<img src="img/loss-surface.png" />
+</p>
+
+<p>
+You can find the low point in the error surface with gradient descent (differentiation).
+</p>
+
+<p>
+Stochastic gradient descent:
+</p>
+<ol>
+<li>
+pick random weights w
+
+<li>
+loop:
+
+<ul>
+<li>
+\(w = w - r \gradient_triangle loss (w)\)
+
+</ul>
+</ol>
+
+<p>
+where r is the learning rate. make sure to pick a good learning rate because if it's too high (like 0.1), it will be inaccurate, while if it's too low, it will take a long time.
+</p>
+
+<p>
+so in summary:
+</p>
+<ul>
+<li>
+get examples of input and output
+
+<li>
+get a loss function
+
+<li>
+work out the gradient of loss with respect to the weights
+
+<li>
+use (stochastic) gradient descent to slowly improve the weights
+
+</ul>
+
+<p>
+how do you calculate the gradient for complex data?
+</p>
+<ul>
+<li>
+symbolically? too computationally expensive
+
+<li>
+numerically? too unstable, also expensive
+
+<li>
+so settle for a middle ground -- backpropagation
+
+</ul>
+
+<p>
+backpropagation: if the system is a composition of modules, the gradient is the product of the gradient of each module with respect to its arguments
+</p>
+<ul>
+<li>
+break computation down into chain of modules
+
+<li>
+work out derivative of each module with respect to its input (<em>symbolically</em>)
+
+<li>
+compute the gradient for a given input by multiplying these gradients for the current input
+
+</ul>
+
+<p>
+<img src="img/backpropagation.png" />
+</p>
+
+<p>
+for a given input x, you do a forward pass (calculating the value for each part), then fill in into final calculation.
+</p>
+
+<p>
+so like this, with x = 0:
+</p>
+
+<p>
+<img src="img/backpropagation-calculation.png" />
+</p>
+
+<p>
+neural networks are just a way of thinking about differentiable computation.
+</p>
+
+<div id="Machine Learning-Neural Networks-Autoencoders: a NN architecture"><h3 id="Autoencoders: a NN architecture">Autoencoders: a NN architecture</h3></div>
+<p>
+bottleneck architecture:
+</p>
+
+<p>
+<img src="img/autoencoder-architecture.png" />
+</p>
+
+<p>
+input should be as close as possible to the output. but it must pass through a small representation
+</p>
+
+<p>
+autoencoders map data to a <em>latent representation</em>
+</p>
+
+<div id="Machine Learning-Neural Networks-Trying it out"><h3 id="Trying it out">Trying it out</h3></div>
+<ul>
+<li>
+code: <a href="https://github.com/pbloem/machine-learning/blob/master/code-samples/autoencoder/autoencoder.py">https://github.com/pbloem/machine-learning/blob/master/code-samples/autoencoder/autoencoder.py</a>
+
+<li>
+setup: <a href="https://docs.google.com/document/d/1-LXG5Lb76xQy70W2ZdannnYMEXRLt0CsoiaK0gTkmfY/edit?usp=sharing">https://docs.google.com/document/d/1-LXG5Lb76xQy70W2ZdannnYMEXRLt0CsoiaK0gTkmfY/edit?usp=sharing</a>
+
+</ul>
+
+<div id="Machine Learning-The promise of depth"><h2 id="The promise of depth">The promise of depth</h2></div>
+<p>
+if you have many dimensions, the gradient isn't as easy to detect anymore. there's a huge number of parameters.
+</p>
+
+<p>
+solutions:
+</p>
+<ol>
+<li>
+Pretraining (no pre-classification by humans)
+
+<ul>
+<li>
+train the network on itself in hidden layers
+
+<li>
+similar to the autoencoder idea
+
+<li>
+you can then stack the autoencoders (hidden layers)
+    <img src="img/pretraining.png" alt="Pretraining" />
+
+</ul>
+</ol>
+    
+<ol>
+<li>
+Pruning the network 
+
+<ul>
+<li>
+convolutional neural network: combine multiple input nodes into one node of a hidden layer 
+
+</ul>
+</ol>
+
+</body>
+</html>
