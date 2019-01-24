@@ -17,6 +17,9 @@ h1 {
 	font-weight: 300;
 	text-align: center;
 }
+ul.toc li {
+	margin: 8px 0;
+}
 .name {
 	font-style: italic;
 	text-align: center;
