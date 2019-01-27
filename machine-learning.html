@@ -56,7 +56,7 @@ reinforcement learning: occasional rewards
 </ul>
 
 <p>
-<img src="img/neurons-vs-nn.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/neurons-vs-nn.png" />
 </p>
 
 <div id="Machine Learning-Learning problems"><h2 id="Learning problems">Learning problems</h2></div>
@@ -169,7 +169,7 @@ Cross validation:
 </p>
 
 <p>
-<img src="img/cross-validation.png" alt="Cross validation diagram" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/cross-validation.png" alt="Cross validation diagram" />
 </p>
 
 <p>
@@ -195,7 +195,7 @@ create a feature space: features on x-y axes, points are individual data, classi
 </p>
 
 <p>
-<img src="img/feature-space.png" alt="Feature space graph" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/feature-space.png" alt="Feature space graph" />
 </p>
 
 
@@ -209,22 +209,15 @@ h is consistent if it agrees with f on all examples
 
 <li>
 for example, curve fitting:
-    <img src="img/curve-fitting.png" alt="Curve fitting graph" />
 
 </ul>
+<blockquote>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/curve-fitting.png" alt="Curve fitting graph" />
+</blockquote>
 
 <p>
 Occam's razor: "one should not increase, beyond what is necessary, the number of entities required to explain anything"
 basically, choose the simplest option.
-</p>
-
-<div id="Machine Learning-Machine Learning Steps:-Choose the features-Linear classifier"><h4 id="Linear classifier">Linear classifier</h4></div>
-<p>
-linear classifier: come up with a line that divides feature space, use that for prediction.
-</p>
-
-<p>
-works for stuff like \(x \lor y\), but not if we want \(x \oplus y\) or other things that are not linearly separable.
 </p>
 
 <div id="Machine Learning-Machine Learning Steps:-Choose the features-Classifying with naive Bayes"><h4 id="Classifying with naive Bayes">Classifying with naive Bayes</h4></div>
@@ -279,30 +272,29 @@ using Bayes' theorem:
 rewrite the numerator of the equation:
 </p>
 
-\begin{align}
-P(C)P(F_1,...,F_n |C)\\
-= P(C)P(F_1 | C)P(F_2 | C, F_1)P(F_3|C, F_1, F_2)P(F_4,...,F_n | C, F_1, F_2, F_3)
-\end{align}
+<p>
+\(P(C)P(F_1,...,F_n |C) = P(C)P(F_1 | C)P(F_2 | C, F_1)P(F_3|C, F_1, F_2)P(F_4,...,F_n | C, F_1, F_2, F_3)\)
+</p>
 
 <p>
 that uses the chaining rule. but it's too computationally expensive.
 so naively assume conditional independence:
 </p>
 
-\[
-P(F_i | C, F_j) = P(F_i | C)
-\]
+<p>
+\(P(F_i | C, F_j) = P(F_i | C)\)
+</p>
 
 <p>
 This simplifies the formula to:
 </p>
 
-\[
-P(C)P(F_1,...,F_n | C) = P(C) PI(0 to n) P(F_i | C)
-\]
+<p>
+\(P(C)P(F_1,...,F_n | C) = P(C) PI(0 to n) P(F_i | C)\)
+</p>
 
 <p>
-<img src="img/bayes-calculation.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/bayes-calculation.png" />
 </p>
 
 <p>
@@ -321,47 +313,173 @@ e.g. to classify unlabeled document, find most similar document and copy label:
 </p>
 
 <p>
-<img src="img/knn.png" alt="K-nearest neighbor example" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/knn.png" alt="K-nearest neighbor example" />
 </p>
 
 <p>
 the <em>k</em> helps get rid of noise which would lead to misclassification  
 </p>
 
+<div id="Machine Learning-Machine Learning Steps:-Choose the features-Linear classifier"><h4 id="Linear classifier">Linear classifier</h4></div>
+<p>
+linear classifier: come up with a line that divides feature space, use that for prediction.
+</p>
+
+<p>
+works for stuff like \(x \lor y\), but not if we want \(x \oplus y\) or other things that are not linearly separable.
+</p>
+
+<p>
+you can build a design matrix of all the different features you want to include. here's an example with 5 different features *age, height, age², age × height, height²) that classifies a person as male/female:
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/design-matrix.png" alt="Design matrix" />
+</p>
+
+<p>
+if you go to more dimensions (so more features in a design matrix), you need hyperplanes.
+</p>
+
+<p>
+hyperplanes sound fancy af but it's just a line in some higher dimension. for example, this is how you would use a hyperplane in the third dimension to separate points:
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/3d-hyperplane.png" alt="3D hyperplane example" />
+</p>
 
 <div id="Machine Learning-Machine Learning Steps:-Choose the features-Support vector machine"><h4 id="Support vector machine">Support vector machine</h4></div>
-
 <p>
 k(x,y): "distance" function between instances x and y
 </p>
 
 <p>
-SVMs create a linear separating hyperplane, can embed that into a higher dimensional domain using the kernel trick -- so long as <em>k</em> is a kernel, you don't have to explicitly compute the design matrix
+SVMs create a linear separating hyperplane
 </p>
 
 <p>
-try to achieve a good margin -- a large separation from the line for both classes.
-</p>
-
-<div id="Machine Learning-Machine Learning Steps:-Choose the model - model search"><h3 id="Choose the model - model search">Choose the model - model search</h3></div>
-<p>
-evaluating regression:
-</p>
-
-\[
-error(p) = \sum_i (f_p (x_i) - y_i)^2
-\]
-
-<p>
-<img src="img/error-graph.png" alt="Error graph" />
+they can embed that hyperplane into a higher dimensional domain using the kernel trick -- so long as <em>k</em> is a kernel, you don't have to explicitly compute the design matrix (that drastically reduces the computation)
 </p>
 
 <p>
-searching for best model:
+try to achieve a good margin -- a large separation from the line for both classes (so reduce the blur between two classes, make a clear distinction).
 </p>
 
 <p>
-<img src="img/feature-model-space" alt="Feature and model space" />
+watch out for over-fitting -- you might end up with the model being trained extremely specifically to your data.
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the model (model search)"><h3 id="Choose the model (model search)">Choose the model (model search)</h3></div>
+
+<p>
+so we have a lot of ways to put a line on a graph. but how do you choose the right one?
+</p>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the model (model search)-Regression"><h4 id="Regression">Regression</h4></div>
+<p>
+train a learner to produce a model (the model is the line/hyperplane). then you give the model a new instance, and it produces a new value based on a function.
+</p>
+
+<p>
+assign a value for each of the points in the feature space.
+</p>
+
+<p>
+evaluating regression -- what's a good model for a regression?
+</p>
+
+<p>
+you use an error function (the difference between predicted and real values, square to avoid negatives):
+</p>
+
+<p>
+\(error(p) = \sum_i (f_p (x_i) - y_i)^2\)
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/error-graph.png" alt="Error graph" />
+</p>
+
+<p>
+in this example, each of the possible lines is represented by two parameters (s the slope, b the y-intercept), in the left graph. those parameters can be plotted on 2D axes, on the right graph.
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/feature-model-space.png" alt="Feature and model space" />
+</p>
+
+<p>
+Then you can take those points in the right graph, and plot their respective error rates (from the error function above) on the z axis, so you end up with a 3D graph -- an error surface:
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/error-surface.png" alt="Error surface" />
+</p>
+
+<p>
+now the point is to find the one with the lowest error (the lowest point in the surface, colored green). and that's what calculus is for, specifically differentiation.
+</p>
+
+<p>
+if you've never done calculus, it's not easy to explain, but basically taking the derivative means you're looking for the slope of a certain function at some point in that function. if you set the derivative to zero, you're looking for the point where the slope is zero -- specifically the minimum or maximum of a function.
+</p>
+
+<p>
+quick example: if you have a function \(y = x^2 + 2\), there's a minimum at x = 0. you may know that by intuition, but you can also take the first derivative (\(y' = 2x\)), set \(y'\) equal to zero, and solve for x -- you'll get the same result. it's trivial with a simple function, but once you get into cubic and quartic functions, you can't really do it by intuition..
+</p>
+
+<p>
+so a derivative \(f'(x)\) of a function \(f(x)\) gives the slope of \(f(x)\) at any point in the domain (where \(f(x)\) has a value \(y\)).
+</p>
+
+<p>
+the rules for taking derivatives (don't need to memorize these, they will be provided on the exam):
+</p>
+
+<p>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/derivative-rules.png" alt="Derivative rules" />
+</p>
+
+<p>
+the problems: 
+</p>
+<ul>
+<li>
+not all derivatives that we find can be resolved to zero
+
+<li>
+and we also have to consider that this can be in higher dimensions
+
+</ul>
+
+<div id="Machine Learning-Machine Learning Steps:-Choose the model (model search)-Gradient descent"><h4 id="Gradient descent">Gradient descent</h4></div>
+<p>
+you use a variant of the hill climbing algorithm
+</p>
+
+<p>
+the steps:
+</p>
+<ol>
+<li>
+pick random parameters s (slope), b (intercept)
+
+<li>
+repeat:
+
+<ol>
+<li>
+compute the gradient
+
+<li>
+move a small step in the opposite direction
+
+</ol>
+</ol>
+
+<p>
+but there may be multiple zero points -- local optima. there's no guarantee of convergence.
 </p>
 
 <div id="Machine Learning-Neural Networks"><h2 id="Neural Networks">Neural Networks</h2></div>
@@ -371,7 +489,7 @@ the difference between original machine learning and deep learning:
 </p>
 
 <p>
-<img src="img/ml-vs-dl.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/ml-vs-dl.png" />
 </p>
 
 <p>
@@ -382,7 +500,7 @@ the original perceptron:
 binary classifier
 
 <li>
-b(ias??) node, always set to 1
+bias node, always set to 1
 
 <li>
 n inputs for each feature, with weights
@@ -397,7 +515,7 @@ but chaining doesn't make it more interesting, the function collapses to a linea
 </p>
   
 <p>
-<img src="img/perceptron.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/perceptron.png" />
 </p>
 
 <p>
@@ -405,7 +523,7 @@ So introduce an activation function instead of using a standard linear calculati
 </p>
 
 <p>
-<img src="img/activation-functions.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/activation-functions.png" />
 </p>
 
 <p>
@@ -413,7 +531,7 @@ Then you can build a feed-forward network with hidden layers between input and o
 </p>
 
 <p>
-<img src="img/feedforward.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/feedforward.png" />
 </p>
 
   
@@ -424,8 +542,8 @@ If you plot neural networks on x-y, and the amount of loss on z axis, you end up
 </p>
 
 <p>
-<img src="img/loss-plot.png" />
-<img src="img/loss-surface.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/loss-plot.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/loss-surface.png" />
 </p>
 
 <p>
@@ -444,7 +562,7 @@ loop:
 
 <ul>
 <li>
-\(w = w - r \gradient_triangle loss (w)\)
+\(w = w - r \triangledown loss (w)\)
 
 </ul>
 </ol>
@@ -502,7 +620,7 @@ compute the gradient for a given input by multiplying these gradients for the cu
 </ul>
 
 <p>
-<img src="img/backpropagation.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/backpropagation.png" />
 </p>
 
 <p>
@@ -514,7 +632,7 @@ so like this, with x = 0:
 </p>
 
 <p>
-<img src="img/backpropagation-calculation.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/backpropagation-calculation.png" />
 </p>
 
 <p>
@@ -527,7 +645,7 @@ bottleneck architecture:
 </p>
 
 <p>
-<img src="img/autoencoder-architecture.png" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/autoencoder-architecture.png" />
 </p>
 
 <p>
@@ -556,7 +674,7 @@ if you have many dimensions, the gradient isn't as easy to detect anymore. there
 <p>
 solutions:
 </p>
-<ol>
+<ul>
 <li>
 Pretraining (no pre-classification by humans)
 
@@ -569,12 +687,14 @@ similar to the autoencoder idea
 
 <li>
 you can then stack the autoencoders (hidden layers)
-    <img src="img/pretraining.png" alt="Pretraining" />
 
 </ul>
-</ol>
+</ul>
+<blockquote>
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/pretraining.png" alt="Pretraining" />
+</blockquote>
     
-<ol>
+<ul>
 <li>
 Pruning the network 
 
@@ -583,7 +703,7 @@ Pruning the network
 convolutional neural network: combine multiple input nodes into one node of a hidden layer 
 
 </ul>
-</ol>
+</ul>
 
 </body>
 </html>

@@ -145,9 +145,11 @@ assume that both players play optimally.
 
 given game tree, optimal strategy can be found with minimax value of each node:
 
+{{{
     minimax(n) = utility(n)                      if n is a terminal
                  minimax(max(successors of n))   if n is a max node
                  minimax(min(successors of n))   if n is a min node
+}}}
 
 ==== Evaluation ====
 - complete: yes
@@ -196,7 +198,7 @@ problems:
     * exploration: when states/actions of environment are unknown
     * sensorless/conformant: agent may have no idea where it is
 
-==== Perfect information Monte Carlo sampling (`rdeep`) ====
+==== Perfect information Monte Carlo sampling (rdeep) ====
 1. rollout:
     * assume a belief state (with perfect info)
     * play random game in that state.

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" async src="https://cdn.jsdelivr.net/gh/mathjax/MathJax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="Stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/gh/mathjax/MathJax@2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <title>state-space-search</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
@@ -81,7 +81,7 @@ time/space complexity measured in terms of max branching factor of search tree, 
 </ul>
 
 <p>
-<img src="img/search-alg-summary.png" alt="Summary of uninformed search algorithms" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/search-alg-summary.png" alt="Summary of uninformed search algorithms" />
 </p>
 
 <div id="State space search-Uninformed search strategies-Breadth-first (BF) search"><h3 id="Breadth-first (BF) search">Breadth-first (BF) search</h3></div>
@@ -413,11 +413,12 @@ assume that both players play optimally.
 <p>
 given game tree, optimal strategy can be found with minimax value of each node:
 </p>
-<blockquote>
-minimax(n) = utility(n)                      if n is a terminal
-minimax(max(successors of n))   if n is a max node
-minimax(min(successors of n))   if n is a min node
-</blockquote>
+
+<pre>
+    minimax(n) = utility(n)                      if n is a terminal
+                 minimax(max(successors of n))   if n is a max node
+                 minimax(min(successors of n))   if n is a min node
+</pre>
 
 <div id="State space search-Adversarial search-Minimax-Evaluation"><h4 id="Evaluation">Evaluation</h4></div>
 <ul>
@@ -520,7 +521,7 @@ sensorless/conformant: agent may have no idea where it is
 
 </ul>
 
-<div id="State space search-Adversarial search-Search with no or partial information-Perfect information Monte Carlo sampling (`rdeep`)"><h4 id="Perfect information Monte Carlo sampling (`rdeep`)">Perfect information Monte Carlo sampling (<code>rdeep</code>)</h4></div>
+<div id="State space search-Adversarial search-Search with no or partial information-Perfect information Monte Carlo sampling (rdeep)"><h4 id="Perfect information Monte Carlo sampling (rdeep)">Perfect information Monte Carlo sampling (rdeep)</h4></div>
 <ol>
 <li>
 rollout:
@@ -543,7 +544,7 @@ choose one with max average
 
 <div id="State space search-Adversarial search-Games with chance"><h3 id="Games with chance">Games with chance</h3></div>
 <p>
-<img src="img/games-chance.png" alt="Games with chance" />
+<img src="/Users/alex/Documents/School/Intelligent Systems/is-notes/src/img/games-chance.png" alt="Games with chance" />
 </p>
 
 <div id="State space search-Summary (Schnapsen)"><h2 id="Summary (Schnapsen)">Summary (Schnapsen)</h2></div>
